@@ -8,7 +8,7 @@ from langchain_groq import ChatGroq
 from langchain.memory import ConversationBufferMemory
 from langchain.chains import ConversationalRetrievalChain
 
-from vectorize_documents import embeddings
+from vectorize_documents import embedding_model
 
 os.environ["TRANSFORMERS_OFFLINE"] = "1"
 
@@ -23,7 +23,7 @@ def setup_vectorstore():
     persist_directory = f"{working_dir}/vector_db_dir"
     embedddings = HuggingFaceEmbeddings()
     vectorstore = Chroma(persist_directory=persist_directory,
-                         embedding_function=embeddings)
+                         embedding_function=embedding_model)
     return vectorstore
 
 
@@ -43,19 +43,19 @@ def chat_chain(vectorstore):
         chain_type="stuff",
         memory=memory,
         verbose=True,
-        return_source_documents=False
+        return_source_documents=True
     )
 
     return chain
 
 
 st.set_page_config(
-    page_title="Multi Doc Chat",
+    page_title="Chatbot",
     page_icon = "📚",
     layout="centered"
 )
 
-st.title("📚 Multi Documents Chatbot")
+st.title("📚Chatbot")
 
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = []
