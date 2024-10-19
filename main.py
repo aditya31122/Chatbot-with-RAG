@@ -20,7 +20,7 @@ os.environ["GROQ_API_KEY"] = GROQ_API_KEY
 
 
 def setup_vectorstore():
-    persist_directory = f"{working_dir}/vector_db_dir"
+    persist_directory = f"{working_dir}/vector_database"
     embedddings = HuggingFaceEmbeddings()
     vectorstore = Chroma(persist_directory=persist_directory,
                          embedding_function=embedding_model)
