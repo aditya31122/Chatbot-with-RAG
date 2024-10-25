@@ -15,5 +15,6 @@ BEFORE starting the code
 2. uninstall python-magic
 3. install python-magic-bin
 
-For starting the code-
+For starting the code
+
 Type "streamlit run main.py" in terminal to start the code
