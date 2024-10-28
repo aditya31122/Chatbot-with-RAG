@@ -1,3 +1,8 @@
+At first before installing the libraries-
+1. Create a virtual environment
+
+Python version used - 3.11.9
+
 Install these libraries-
 1. langchain-community
 2. langchain-huggingface
@@ -11,9 +16,8 @@ Install these libraries-
 10. langchain-text-splitters
 
 BEFORE starting the code
-1. create a virtual environment
-2. uninstall python-magic
-3. install python-magic-bin
+1. uninstall python-magic
+2. install python-magic-bin
 
 For starting the code
 
