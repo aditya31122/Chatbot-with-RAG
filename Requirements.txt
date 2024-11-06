@@ -4,7 +4,7 @@ langchain-chroma
 langchain-groq
 streamlit
 nltk
-PyMuPDFLoader
+PyMuPDF
 unstructured
 unstructured[pdf]
 langchain-text-splitters
