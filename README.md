@@ -14,6 +14,7 @@ Install these libraries-
 8. unstructured
 9. unstructured[pdf]
 10. langchain-text-splitters
+11. sentence-transformers
 
 BEFORE starting the code
 1. uninstall python-magic
