@@ -18,6 +18,7 @@ Install these libraries-
 BEFORE starting the code
 1. uninstall python-magic
 2. install python-magic-bin
+3. In terminal run "huggingface-cli login" and enter the required credentials
 
 For starting the code
 
