@@ -14,14 +14,14 @@ os.environ["TRANSFORMERS_CACHE"] = "./transformers_cache"
 os.environ["HF_HOME"] = "./huggingface_cache"
 
 # Initialize sentence transformer model and save locally
-sentence_model_name = 'bert-base-nli-mean-tokens'
+sentence_model_name = 'sentence-transformers/all-MiniLM-L6-v2'
 sentence_model = SentenceTransformer(sentence_model_name)
 sentence_model.save('./local_model')
 
 # Load HuggingFace embedding model (Sentence Transformer)
 embedding_model = HuggingFaceEmbeddings(model_name="./local_model")
 
-print(embedding_model.client.get_sentence_embedding_dimension())
+print(dir(embedding_model))
 
 # Function to load documents (PDFs)
 def load_documents(directory="data", file_pattern="*.pdf"):
