@@ -8,3 +8,4 @@ PyMuPDF
 unstructured
 unstructured[pdf]
 langchain-text-splitters
+sentence-transformers
