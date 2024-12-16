@@ -4,9 +4,9 @@ import json
 import streamlit as st
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_chroma import Chroma  # Ensure you have the correct import here
-from langchain_groq import ChatGroq
 from langchain.memory import ConversationBufferMemory
 from langchain.chains import ConversationalRetrievalChain
+from transformers import AutoTokenizer, AutoModelForCausalLM
 
 from vectorize_documents import embedding_model  # Ensure embedding_model is correctly defined
 
@@ -14,9 +14,15 @@ os.environ["TRANSFORMERS_OFFLINE"] = "1"
 
 working_dir = os.path.dirname(os.path.abspath(__file__))
 config_data = json.load(open(f"{working_dir}/config.json"))
-GROQ_API_KEY = config_data["GROQ_API_KEY"]
-os.environ["GROQ_API_KEY"] = GROQ_API_KEY
 
+# Load the local Llama model
+def load_llama_model():
+    # Load the tokenizer and model from local storage
+    tokenizer = AutoTokenizer.from_pretrained("meta-llama/Llama-3.2-3B-Instruct")  
+    model = AutoModelForCausalLM.from_pretrained("meta-llama/Llama-3.2-3B-Instruct")  
+    return tokenizer, model
+
+# Initialize vector store
 def setup_vectorstore():
     persist_directory = f"{working_dir}/vector_database"
     # Use the pre-initialized embedding model directly
@@ -25,16 +31,19 @@ def setup_vectorstore():
     return vectorstore
 
 def chat_chain(vectorstore):
-    llm = ChatGroq(model="llama-3.1-70b-versatile", temperature=0)
+    # Load the Llama model and tokenizer
+    tokenizer, model = load_llama_model()
+
+    # Create the chain with the Llama model
     retriever = vectorstore.as_retriever(search_kwargs={"k": 2})
     memory = ConversationBufferMemory(
-        llm=llm,
+        llm=model,
         output_key="answer",
         memory_key="chat_history",
         return_messages=True
     )
     chain = ConversationalRetrievalChain.from_llm(
-        llm=llm,
+        llm=model,
         retriever=retriever,
         chain_type="stuff",
         memory=memory,
@@ -58,7 +67,7 @@ if "chat_history" not in st.session_state:
 if "vectorstore" not in st.session_state:
     st.session_state.vectorstore = setup_vectorstore()
 
-if "conversational_chain" not in st.session_state:  # Corrected typo here
+if "conversational_chain" not in st.session_state:
     st.session_state.conversational_chain = chat_chain(st.session_state.vectorstore)
 
 # Display chat history
