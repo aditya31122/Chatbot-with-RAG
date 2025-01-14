@@ -7,14 +7,16 @@ Install these libraries-
 1. langchain-community
 2. langchain-huggingface
 3. langchain-chroma
-4. langchain-groq
-5. streamlit
-6. nltk
-7. PyMuPDFLoader
-8. unstructured
-9. unstructured[pdf]
-10. langchain-text-splitters
-11. sentence-transformers
+4. huggingface
+5. huggingface-hub
+6. langchain-groq
+7. streamlit
+8. nltk
+9. PyMuPDFLoader
+10. unstructured
+11. unstructured[pdf]
+12. langchain-text-splitters
+13. sentence-transformers
 
 BEFORE starting the code
 1. uninstall python-magic
