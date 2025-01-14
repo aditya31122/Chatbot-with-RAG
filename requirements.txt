@@ -9,3 +9,5 @@ unstructured
 unstructured[pdf]
 langchain-text-splitters
 sentence-transformers
+huggingface
+huggingface-hub
