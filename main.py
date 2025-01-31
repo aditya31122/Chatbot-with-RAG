@@ -20,6 +20,12 @@ def temp():
     for i in 10:
         print(i)
 
+
+# Temp function for testing
+def temp2():
+    for i in 10:
+        print(i)
+
 # Load the local Llama model
 def load_llama_model():
     # Load the tokenizer and model from local storage
