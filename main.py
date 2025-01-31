@@ -15,6 +15,11 @@ os.environ["TRANSFORMERS_OFFLINE"] = "1"
 working_dir = os.path.dirname(os.path.abspath(__file__))
 config_data = json.load(open(f"{working_dir}/config.json"))
 
+# Temp function for testing
+def temp():
+    for i in 10:
+        print(i)
+
 # Load the local Llama model
 def load_llama_model():
     # Load the tokenizer and model from local storage
